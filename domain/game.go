@@ -31,6 +31,27 @@ func Build() *p.Game {
 	// in the corner just gets in the way. Pass "player" as the second
 	// arg to put it back.
 	p.RegisterRichUI(g, "", "cat")
+	// Swap the rich UI's always-visible verb wheel for a right-click,
+	// hotspot-only verb coin. The default wheel sits over the bedroom
+	// door, blocking that exit — the coin only appears on a right-click
+	// landing on a hotspot, so the screen stays free between picks.
+	// Drop the cursor too so we can re-register it after the new wheel,
+	// keeping the crosshair painted on top of the open coin.
+	g.UIManager.Remove("verbs")
+	g.UIManager.Remove("cursor")
+	g.UIManager.Register(&p.RadialVerbs{
+		Name:        "verbs",
+		Trigger:     p.MouseButtonRight,
+		Radius:      36,
+		HotspotOnly: true,
+		Labels: map[string]string{
+			"look": "Néz",
+			"use":  "Tedd",
+			"talk": "Szól",
+			"take": "Vedd",
+		},
+	})
+	g.UIManager.Register(&p.Cursor{Name: "cursor"})
 	g.UIManager.Register(&saveKeys{})
 	g.MaxLogLines = 64
 
