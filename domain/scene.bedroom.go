@@ -11,6 +11,17 @@ func defineBedroom(g *p.Game) {
 		Actors: []p.SceneActor{
 			{CharacterName: "player", At: p.Point{X: 160, Y: 145}},
 		},
+		// Floor strip — Walk targets get clipped to this band, so clicks
+		// on the bed or nightstand send the player to the floor in front
+		// of them instead of letting them clip through furniture.
+		Walkboxes: []p.Polygon{
+			p.Poly(
+				p.Point{X: 10, Y: 135},
+				p.Point{X: 310, Y: 135},
+				p.Point{X: 310, Y: 160},
+				p.Point{X: 10, Y: 160},
+			),
+		},
 		Hotspots: []p.Hotspot{
 			{
 				Name:   "bed",

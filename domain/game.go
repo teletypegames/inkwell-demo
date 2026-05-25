@@ -31,6 +31,7 @@ func Build() *p.Game {
 	// in the corner just gets in the way. Pass "player" as the second
 	// arg to put it back.
 	p.RegisterRichUI(g, "", "cat")
+	g.UIManager.Register(&saveKeys{})
 	g.MaxLogLines = 64
 
 	// initial HUD vars

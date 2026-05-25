@@ -12,6 +12,28 @@ func defineKitchen(g *p.Game) {
 			{CharacterName: "player", At: p.Point{X: 60, Y: 145}},
 			{CharacterName: "cat", At: p.Point{X: 215, Y: 142}},
 		},
+		// Floor strip. Same shape as the bedroom — keeps movement on a
+		// consistent Y band and clips destinations away from the cupboard
+		// and coffee machine.
+		Walkboxes: []p.Polygon{
+			p.Poly(
+				p.Point{X: 10, Y: 135},
+				p.Point{X: 310, Y: 135},
+				p.Point{X: 310, Y: 160},
+				p.Point{X: 10, Y: 160},
+			),
+		},
+		// First time the player walks into the kitchen with the key in
+		// hand, drop a hint. The trigger arms on scene enter; the
+		// rising-edge fires once per arming because Once: true.
+		Triggers: []p.Trigger{
+			{
+				Name: "kitchen_with_key_hint",
+				Once: true,
+				When: p.And(p.HasItem("key"), p.Not(p.Flag(FlagCupboardOpen))),
+				Do:   p.Say("player", "A kulcs jól jöhet a szekrényhez."),
+			},
+		},
 		Hotspots: []p.Hotspot{
 			{
 				Name:   "cupboard",
