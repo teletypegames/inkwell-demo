@@ -20,6 +20,9 @@ func Run() {
 func Build() *p.Game {
 	g := p.NewGame("Reggeli Kávé", 320, 200)
 
+	g.ThemeManager.Register(MorningCoffeeTheme)
+	g.UseTheme("morning-coffee")
+
 	for _, a := range Assets {
 		g.AssetManager.Register(a)
 	}
@@ -45,6 +48,11 @@ func Build() *p.Game {
 	// in the corner just gets in the way. Pass "player" as the second
 	// arg to put it back.
 	p.RegisterRichUI(g, "", "cat")
+	// Replace the framework's in-game ChatLog with the demo's own
+	// click-and-type GameChat panel — game-independent chatter that
+	// does not belong in the pncdsl library.
+	g.UIManager.Remove("chat")
+	g.UIManager.Register(Chat)
 	// Swap the rich UI's always-visible verb wheel for a right-click,
 	// hotspot-only verb coin. The default wheel sits over the bedroom
 	// door, blocking that exit — the coin only appears on a right-click
