@@ -1,14 +1,7 @@
 package main
 
-import (
-	"log"
-
-	"git.teletypegames.org/games/pncdsl-demo/domain"
-	"git.teletypegames.org/games/pncdsl"
-)
+import "git.teletypegames.org/games/pncdsl-demo/lib"
 
 func main() {
-	if err := pncdsl.Run(domain.Build()); err != nil {
-		log.Fatal(err)
-	}
+	lib.Run()
 }

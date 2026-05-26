@@ -1,29 +1,43 @@
-package domain
+package lib
 
-import p "git.teletypegames.org/games/pncdsl"
+import (
+	"log"
 
-// Build assembles the full Reggeli Kávé game by registering every entity
-// into its matching manager on a fresh *Game. The order matters only for
-// readability — Validate() runs after Build to cross-check references.
+	p "git.teletypegames.org/games/pncdsl"
+)
+
+// Run builds the game and hands it to the pncdsl engine. It is the
+// single entry point referenced from main.go.
+func Run() {
+	if err := p.Run(Build()); err != nil {
+		log.Fatal(err)
+	}
+}
+
+// Build wires every entity declared in the sibling files into a fresh
+// *Game. Validate() runs from p.Run() to cross-check name references
+// between managers.
 func Build() *p.Game {
 	g := p.NewGame("Reggeli Kávé", 320, 200)
 
-	registerAssets(g)
+	for _, a := range Assets {
+		g.AssetManager.Register(a)
+	}
 
-	definePlayer(g)
-	defineCat(g)
+	g.CharacterManager.Register(Player)
+	g.CharacterManager.Register(Cat)
 
-	defineKey(g)
-	defineBeans(g)
-	defineMug(g)
+	g.ItemManager.Register(Key)
+	g.ItemManager.Register(Beans)
+	g.ItemManager.Register(Mug)
 
-	defineCatMorning(g)
+	g.DialogueManager.Register(CatMorning)
 
-	defineIntroScript(g)
-	defineVictoryScript(g)
+	g.ScriptManager.Register(IntroScript)
+	g.ScriptManager.Register(VictoryScript)
 
-	defineBedroom(g)
-	defineKitchen(g)
+	g.SceneManager.Register(Bedroom)
+	g.SceneManager.Register(Kitchen)
 
 	// Story-rich HUD: top bar + NPC character panel + chat log + permanent
 	// verb wheel + small inventory. The player panel is skipped — the
@@ -52,7 +66,7 @@ func Build() *p.Game {
 		},
 	})
 	g.UIManager.Register(&p.Cursor{Name: "cursor"})
-	g.UIManager.Register(&saveKeys{})
+	g.UIManager.Register(&SaveKeys{})
 	g.MaxLogLines = 64
 
 	// initial HUD vars

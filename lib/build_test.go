@@ -1,10 +1,10 @@
-package domain
+package lib
 
 import "testing"
 
-// TestBuildValidates is the headless smoke test described in PLAN.md:
-// it composes the full game and asks the library to cross-check every
-// name reference between managers. No window opens.
+// TestBuildValidates is the headless smoke test: it composes the full
+// game and asks the library to cross-check every name reference
+// between managers. No window opens.
 func TestBuildValidates(t *testing.T) {
 	g := Build()
 	if err := g.Validate(); err != nil {

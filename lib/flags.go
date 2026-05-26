@@ -1,4 +1,4 @@
-package domain
+package lib
 
 const (
 	FlagKeyTaken       = "key_taken"

@@ -1,4 +1,4 @@
-package domain
+package lib
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
@@ -7,14 +7,14 @@ import (
 	p "git.teletypegames.org/games/pncdsl"
 )
 
-// saveKeys is a no-draw widget that binds F5 → Save(slot 0) and
+// SaveKeys is a no-draw widget that binds F5 → Save(slot 0) and
 // F9 → Load(slot 0). Errors are surfaced via FlashLine so the player
 // sees them in the status strip.
-type saveKeys struct{}
+type SaveKeys struct{}
 
-func (s *saveKeys) GetName() string { return "save_keys" }
+func (s *SaveKeys) GetName() string { return "save_keys" }
 
-func (s *saveKeys) Tick(ctx *p.UICtx) {
+func (s *SaveKeys) Tick(ctx *p.UICtx) {
 	g := ctx.Game
 	if inpututil.IsKeyJustPressed(ebiten.KeyF5) {
 		if err := g.Save(0); err != nil {
@@ -32,4 +32,4 @@ func (s *saveKeys) Tick(ctx *p.UICtx) {
 	}
 }
 
-func (s *saveKeys) Draw(_ *ebiten.Image, _ *p.UICtx) {}
+func (s *SaveKeys) Draw(_ *ebiten.Image, _ *p.UICtx) {}
