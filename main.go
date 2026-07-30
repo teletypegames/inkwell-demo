@@ -1,7 +1,19 @@
 package main
 
-import "git.teletypegames.org/games/pncdsl-demo/lib"
+import (
+	"embed"
+
+	p "git.teletypegames.org/games/pncdsl"
+	"git.teletypegames.org/games/pncdsl-demo/lib"
+)
+
+// The asset tree is compiled into the binary so the js/wasm build can
+// load it too — in the browser there is no OS filesystem to read from.
+//
+//go:embed assets
+var assetsFS embed.FS
 
 func main() {
+	p.AssetFS = assetsFS
 	lib.Run()
 }

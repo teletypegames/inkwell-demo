@@ -52,7 +52,7 @@ Game content lives in `lib/` as package-level `var`s — one struct value
 per file, no constructor functions. `main.go` only calls `lib.Run()`.
 
 ```
-main.go                       func main() { lib.Run() }
+main.go                       embeds assets/ (go:embed) and calls lib.Run()
 lib/
   setup.go                    Run() and Build(); the only wiring code
   assets.go                   var Assets []pncdsl.Asset
@@ -73,6 +73,13 @@ lib/
 Adding new content means creating one file with one `var`, and adding
 one `Register(...)` line in `lib/setup.go`. No registrar functions, no
 indirection.
+
+The `assets/` tree is compiled into the binary via `go:embed` and
+handed to the framework through `pncdsl.AssetFS`, so the js/wasm build
+(`make wasm`) ships with working art. Native builds read from the same
+embedded copy — changing a PNG requires a rebuild. Files listed in
+`lib/assets.go` but missing from `assets/` still fall back to the
+framework's colored placeholders.
 
 ## Custom theme and chat widget
 
