@@ -1,0 +1,47 @@
+steps:
+  - name: version
+    image: alpine
+    commands:
+      - apk add --no-cache git make jq
+      - make ci-version
+
+  - name: build
+    image: golang:1.26.3-alpine
+    environment:
+      GOPRIVATE: git.teletypegames.org/*
+      GIT_SSH_KEY:
+        from_secret: git_ssh_key
+    commands:
+      - apk add --no-cache zip make curl git openssh-client
+      - mkdir -p ~/.ssh
+      - echo "$GIT_SSH_KEY" > ~/.ssh/id_ed25519
+      - chmod 600 ~/.ssh/id_ed25519
+      - ssh-keyscan -p 2222 git.teletypegames.org >> ~/.ssh/known_hosts 2>/dev/null
+      - git config --global url."ssh://git@git.teletypegames.org:2222/".insteadOf "https://git.teletypegames.org/"
+      # The go.mod may point at a local ../pncdsl checkout (see README);
+      # in CI clone the framework next to the workspace so it resolves.
+      - if grep -q '=> \.\./pncdsl' go.mod; then git clone ssh://git@git.teletypegames.org:2222/games/pncdsl ../pncdsl; fi
+      - make ci-export
+
+  - name: artifact
+    image: alpine
+    environment:
+      DROPAREA_HOST: vps.teletype.hu
+      DROPAREA_PORT: 2223
+      DROPAREA_TARGET_PATH: /home/drop
+      DROPAREA_USER: drop
+      DROPAREA_SSH_PASSWORD:
+        from_secret: droparea_ssh_password
+    commands:
+      - apk add --no-cache make openssh-client sshpass
+      - make ci-upload
+
+  - name: update
+    image: alpine
+    environment:
+      UPDATE_SERVER: https://teletypegames.org
+      UPDATE_SECRET:
+        from_secret: update_secret_key
+    commands:
+      - apk add --no-cache make curl
+      - make ci-update
