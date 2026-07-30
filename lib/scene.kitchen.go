@@ -1,6 +1,6 @@
 package lib
 
-import p "git.teletypegames.org/games/pncdsl"
+import p "git.teletypegames.org/games/inkwell"
 
 var Kitchen = p.Scene{
 	Name:       "kitchen",

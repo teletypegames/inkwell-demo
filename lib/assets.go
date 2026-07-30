@@ -1,6 +1,6 @@
 package lib
 
-import p "git.teletypegames.org/games/pncdsl"
+import p "git.teletypegames.org/games/inkwell"
 
 // Assets lists every asset the game references. Files don't need to
 // exist on disk — the library substitutes deterministic colored

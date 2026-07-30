@@ -2,7 +2,7 @@
 # Makefile – Ebitengine project builder
 # -----------------------------------------
 
-PROJECT = pncdsl-demo
+PROJECT = inkwell-demo
 
 BIN_DIR     = bin
 DIST_DIR    = dist

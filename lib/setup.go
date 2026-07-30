@@ -3,10 +3,10 @@ package lib
 import (
 	"log"
 
-	p "git.teletypegames.org/games/pncdsl"
+	p "git.teletypegames.org/games/inkwell"
 )
 
-// Run builds the game and hands it to the pncdsl engine. It is the
+// Run builds the game and hands it to the inkwell engine. It is the
 // single entry point referenced from main.go.
 func Run() {
 	if err := p.Run(Build()); err != nil {
@@ -50,7 +50,7 @@ func Build() *p.Game {
 	p.RegisterRichUI(g, "", "cat")
 	// Replace the framework's in-game ChatLog with the demo's own
 	// click-and-type GameChat panel — game-independent chatter that
-	// does not belong in the pncdsl library.
+	// does not belong in the inkwell library.
 	g.UIManager.Remove("chat")
 	g.UIManager.Register(Chat)
 	// Swap the rich UI's always-visible verb wheel for a right-click,

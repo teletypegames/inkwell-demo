@@ -3,7 +3,7 @@ package lib
 import (
 	"image/color"
 
-	p "git.teletypegames.org/games/pncdsl"
+	p "git.teletypegames.org/games/inkwell"
 )
 
 var Cat = p.Character{

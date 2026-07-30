@@ -1,9 +1,9 @@
 {
-  "name": "pncdsl-demo",
+  "name": "inkwell-demo",
   "title": "Morning Coffee",
   "author": "Teletype Games",
-  "desc": "A short point-and-click adventure built on the pncdsl framework",
-  "site": "https://git.teletypegames.org/games/pncdsl-demo",
+  "desc": "A short point-and-click adventure built on the inkwell framework",
+  "site": "https://git.teletypegames.org/games/inkwell-demo",
   "license": "MIT License",
   "version": "1.0.0"
 }

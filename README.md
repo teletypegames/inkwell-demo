@@ -1,7 +1,7 @@
-# pncdsl-demo — Morning Coffee
+# inkwell-demo — Morning Coffee
 
 A short point-and-click adventure built on the
-[`pncdsl`](https://git.teletypegames.org/games/pncdsl) framework. Two scenes,
+[`inkwell`](https://git.teletypegames.org/games/inkwell) framework. Two scenes,
 three items, one NPC dialog and an ending cutscene — small on purpose,
 designed as an end-to-end reference for someone learning the library.
 
@@ -9,12 +9,12 @@ designed as an end-to-end reference for someone learning the library.
 
 The library is fetched as a regular Go module. Prerequisites: Go 1.24+
 and SSH access to `git.teletypegames.org` (the private host that serves the
-`pncdsl` repo).
+`inkwell` repo).
 
 ```bash
-git clone ssh://git@git.teletypegames.org:2222/games/pncdsl-demo
-cd pncdsl-demo
-go mod tidy        # fetches git.teletypegames.org/games/pncdsl
+git clone ssh://git@git.teletypegames.org:2222/games/inkwell-demo
+cd inkwell-demo
+go mod tidy        # fetches git.teletypegames.org/games/inkwell
 go run .
 ```
 
@@ -37,10 +37,10 @@ permanent.)
 ### Local-development override
 
 While iterating on the framework and the demo in parallel, point Go at a
-local checkout of `pncdsl` with a temporary `replace` directive:
+local checkout of `inkwell` with a temporary `replace` directive:
 
 ```bash
-go mod edit -replace=git.teletypegames.org/games/pncdsl=../pncdsl
+go mod edit -replace=git.teletypegames.org/games/inkwell=../inkwell
 go mod tidy
 ```
 
@@ -55,7 +55,7 @@ per file, no constructor functions. `main.go` only calls `lib.Run()`.
 main.go                       embeds assets/ (go:embed) and calls lib.Run()
 lib/
   setup.go                    Run() and Build(); the only wiring code
-  assets.go                   var Assets []pncdsl.Asset
+  assets.go                   var Assets []inkwell.Asset
   flags.go                    flag-name constants
   character.player.go         var Player
   character.cat.go            var Cat
@@ -75,7 +75,7 @@ one `Register(...)` line in `lib/setup.go`. No registrar functions, no
 indirection.
 
 The `assets/` tree is compiled into the binary via `go:embed` and
-handed to the framework through `pncdsl.AssetFS`, so the js/wasm build
+handed to the framework through `inkwell.AssetFS`, so the js/wasm build
 (`make wasm`) ships with working art. Native builds read from the same
 embedded copy — changing a PNG requires a rebuild. Files listed in
 `lib/assets.go` but missing from `assets/` still fall back to the

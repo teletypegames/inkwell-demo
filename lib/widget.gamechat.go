@@ -9,7 +9,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 
-	p "git.teletypegames.org/games/pncdsl"
+	p "git.teletypegames.org/games/inkwell"
 )
 
 // GameChat is a stand-alone chat panel: click to focus, type a message,
@@ -190,11 +190,11 @@ func (c *GameChat) Draw(dst *ebiten.Image, ctx *p.UICtx) {
 	vector.DrawFilledRect(dst, float32(b.X), float32(inY), float32(b.W), 1, border, false)
 }
 
-// BlocksClickAt implements the pncdsl clickBlocker contract so the
+// BlocksClickAt implements the inkwell clickBlocker contract so the
 // verb-coin doesn't pop up over the chat panel.
 func (c *GameChat) BlocksClickAt(pt p.Point) bool { return c.Bounds.Contains(pt) }
 
-// chatTextWidth mirrors the pncdsl text width estimate for the bundled
+// chatTextWidth mirrors the inkwell text width estimate for the bundled
 // debug font (~6 px / glyph). Kept private to the demo.
 func chatTextWidth(s string) int { return len(s) * 6 }
 

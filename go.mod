@@ -1,9 +1,9 @@
-module git.teletypegames.org/games/pncdsl-demo
+module git.teletypegames.org/games/inkwell-demo
 
 go 1.26.3
 
 require (
-	git.teletypegames.org/games/pncdsl v0.0.0-00010101000000-000000000000
+	git.teletypegames.org/games/inkwell v0.0.0-00010101000000-000000000000
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 )
 
@@ -20,4 +20,4 @@ require (
 	golang.org/x/sys v0.36.0 // indirect
 )
 
-replace git.teletypegames.org/games/pncdsl => ../pncdsl
+replace git.teletypegames.org/games/inkwell => ../inkwell

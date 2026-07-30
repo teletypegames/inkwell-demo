@@ -9,9 +9,9 @@ steps:
     image: golang:1.26.3-alpine
     commands:
       - apk add --no-cache zip make curl git
-      # The go.mod may point at a local ../pncdsl checkout (see README);
+      # The go.mod may point at a local ../inkwell checkout (see README);
       # in CI clone the framework next to the workspace so it resolves.
-      - if grep -q '=> \.\./pncdsl' go.mod; then git clone https://git.teletypegames.org/games/pncdsl ../pncdsl; fi
+      - if grep -q '=> \.\./inkwell' go.mod; then git clone https://git.teletypegames.org/games/inkwell ../inkwell; fi
       - make ci-export
 
   - name: artifact

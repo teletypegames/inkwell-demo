@@ -3,8 +3,8 @@ package main
 import (
 	"embed"
 
-	p "git.teletypegames.org/games/pncdsl"
-	"git.teletypegames.org/games/pncdsl-demo/lib"
+	p "git.teletypegames.org/games/inkwell"
+	"git.teletypegames.org/games/inkwell-demo/lib"
 )
 
 // The asset tree is compiled into the binary so the js/wasm build can

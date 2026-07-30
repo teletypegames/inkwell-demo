@@ -16,7 +16,7 @@
         {
             "label": "Build & Run",
             "type": "shell",
-            "command": "make clean && make build && ./bin/pncdsl-demo",
+            "command": "make clean && make build && ./bin/inkwell-demo",
             "problemMatcher": []
         },
         {
