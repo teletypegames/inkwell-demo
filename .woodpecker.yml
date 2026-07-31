@@ -6,10 +6,8 @@ steps:
       - make ci-version
 
   - name: build
-    image: golang:1.26.3-alpine
+    image: git.teletypegames.org/internal/ebitengine-builder:latest
     commands:
-      - apk add --no-cache zip make curl git
-      # The go.mod may point at a local ../inkwell checkout (see README);
       # in CI clone the framework next to the workspace so it resolves.
       - if grep -q '=> \.\./inkwell' go.mod; then git clone https://git.teletypegames.org/games/inkwell ../inkwell; fi
       - make ci-export
