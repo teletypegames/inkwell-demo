@@ -7,6 +7,7 @@ steps:
 
   - name: build
     image: git.teletypegames.org/internal/ebitengine-builder:latest
+    pull: true
     commands:
       # in CI clone the framework next to the workspace so it resolves.
       - if grep -q '=> \.\./inkwell' go.mod; then git clone https://git.teletypegames.org/games/inkwell ../inkwell; fi
@@ -14,6 +15,7 @@ steps:
 
   - name: binaries
     image: git.teletypegames.org/internal/ebitengine-builder:latest
+    pull: true
     commands:
       # önálló futáshoz is: ha a framework még nincs odaklónozva, pótoljuk
       - if grep -q '=> \.\./inkwell' go.mod && [ ! -d ../inkwell ]; then git clone https://git.teletypegames.org/games/inkwell ../inkwell; fi
