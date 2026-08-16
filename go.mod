@@ -1,9 +1,9 @@
-module git.teletypegames.org/games/inkwell-demo
+module git.teletypegames.org/demos/inkwell-demo
 
 go 1.26.3
 
 require (
-	git.teletypegames.org/games/inkwell v0.0.0-00010101000000-000000000000
+	git.teletypegames.org/engines/inkwell v0.1.0
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 )
 
@@ -19,5 +19,3 @@ require (
 	golang.org/x/sync v0.17.0 // indirect
 	golang.org/x/sys v0.36.0 // indirect
 )
-
-replace git.teletypegames.org/games/inkwell => ../inkwell

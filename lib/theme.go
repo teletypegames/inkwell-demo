@@ -3,7 +3,7 @@ package lib
 import (
 	"image/color"
 
-	p "git.teletypegames.org/games/inkwell"
+	p "git.teletypegames.org/engines/inkwell"
 )
 
 // MorningCoffeeTheme is the game-specific palette: warm coffee browns

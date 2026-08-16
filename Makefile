@@ -4,6 +4,10 @@
 
 PROJECT = inkwell-demo
 
+# Our own modules live on the forge, not on proxy.golang.org: fetch them
+# directly and skip the public checksum database.
+export GOPRIVATE = git.teletypegames.org
+
 BIN_DIR     = bin
 DIST_DIR    = dist
 WASM_NAME   = game.wasm

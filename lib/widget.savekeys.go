@@ -4,7 +4,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 
-	p "git.teletypegames.org/games/inkwell"
+	p "git.teletypegames.org/engines/inkwell"
 )
 
 // SaveKeys is a no-draw widget that binds F5 → Save(slot 0) and

@@ -9,7 +9,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 
-	p "git.teletypegames.org/games/inkwell"
+	p "git.teletypegames.org/engines/inkwell"
 )
 
 // GameChat is a stand-alone chat panel: click to focus, type a message,

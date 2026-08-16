@@ -3,7 +3,7 @@ package lib
 import (
 	"image/color"
 
-	p "git.teletypegames.org/games/inkwell"
+	p "git.teletypegames.org/engines/inkwell"
 )
 
 var Player = p.Character{

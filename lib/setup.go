@@ -3,7 +3,7 @@ package lib
 import (
 	"log"
 
-	p "git.teletypegames.org/games/inkwell"
+	p "git.teletypegames.org/engines/inkwell"
 )
 
 // Run builds the game and hands it to the inkwell engine. It is the
