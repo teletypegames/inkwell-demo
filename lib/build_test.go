@@ -20,8 +20,15 @@ func TestBuildValidates(t *testing.T) {
 			t.Errorf("missing item %q", name)
 		}
 	}
-	if !g.DialogueManager.Has("cat_morning") {
-		t.Errorf("missing dialogue cat_morning")
+	if !g.DialogManager.Has("cat_morning") {
+		t.Errorf("missing dialog cat_morning")
+	}
+	if !g.StageManager.Has("game") {
+		t.Errorf("missing stage game")
+	}
+	stage, ok := g.StageManager.Get(g.StartStage)
+	if !ok || !stage.World {
+		t.Errorf("StartStage %q is not a registered world stage", g.StartStage)
 	}
 	if !g.ScriptManager.Has("intro") || !g.ScriptManager.Has("victory") {
 		t.Errorf("missing intro/victory script")

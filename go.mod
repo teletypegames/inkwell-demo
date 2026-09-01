@@ -3,7 +3,7 @@ module git.teletypegames.org/demos/inkwell-demo
 go 1.26.3
 
 require (
-	git.teletypegames.org/engines/inkwell v0.1.0
+	git.teletypegames.org/engines/inkwell v0.1.1-0.20260901174551-31e94ae8ed15
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 )
 

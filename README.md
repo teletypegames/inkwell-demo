@@ -1,9 +1,15 @@
 # inkwell-demo — Morning Coffee
 
 A short point-and-click adventure built on the
-[`inkwell`](https://git.teletypegames.org/games/inkwell) framework. Two scenes,
+[`inkwell`](https://git.teletypegames.org/engines/inkwell) engine. Two scenes,
 three items, one NPC dialog and an ending cutscene — small on purpose,
 designed as an end-to-end reference for someone learning the library.
+
+Every string the player reads is an `inkwell.Text`, which is the same string
+in as many languages as somebody has written it in. This demo is written in
+Hungarian and nothing else, so each one carries a single `{Lang: "hu", …}`
+line; adding a second language is adding a second line to each, and touches
+nothing around it.
 
 ## Running it
 
@@ -67,12 +73,27 @@ lib/
   dialog.cat_morning.go       var CatMorning
   theme.go                    var MorningCoffeeTheme + var Chat
   widget.gamechat.go          GameChat — demo-only chat widget
-  widget.savekeys.go          SaveKeys — F5/F9 save/load
 ```
 
 Adding new content means creating one file with one `var`, and adding
 one `Register(...)` line in `lib/setup.go`. No registrar functions, no
 indirection.
+
+`Build()` declares the game as one `inkwell.Game` literal and registers the
+entities into the managers it carries. Two things in there are worth a look
+if you are learning the engine:
+
+- **One `Stage`, and it is the world.** A Stage is one full-screen thing the
+  game can show, and exactly one shows at a time. This demo has a single
+  Stage with `World: true` and opens straight into it. A game with a main
+  menu registers more of them and names a menu as its `StartStage`; off the
+  world Stage the engine paints no scene and ticks no character.
+- **The HUD is registered by hand**, not through `RegisterRichUI`. The preset
+  would be shorter, but the demo wants its own chat panel instead of the
+  built-in `ChatLog`, a right-click verb coin instead of the always-visible
+  wheel, and no player panel. Registering what you want beats registering a
+  preset and subtracting from it — and there is nothing to subtract with,
+  since a manager has no `Remove`.
 
 The `assets/` tree is compiled into the binary via `go:embed` and
 handed to the framework through `inkwell.AssetFS`, so the js/wasm build
@@ -80,6 +101,10 @@ handed to the framework through `inkwell.AssetFS`, so the js/wasm build
 embedded copy — changing a PNG requires a rebuild. Files listed in
 `lib/assets.go` but missing from `assets/` still fall back to the
 framework's colored placeholders.
+
+`F5` and `F9` are two `inkwell.KeyBinding` registrations — a key and what it
+does, and nothing else. The demo used to carry a `SaveKeys` widget for them;
+the engine grew the concept, so the file went.
 
 ## Custom theme and chat widget
 
@@ -119,7 +144,7 @@ gameplay-flavoured chatter.
 | Esc                               | unfocus chat |
 | click during dialog               | advance line / pick choice |
 | **F1**                            | toggle hotspot debug overlay |
-| **F5** / **F9**                   | save / load slot 0 |
+| **F5** / **F9**                   | save / load slot 1 |
 
 ## License
 
