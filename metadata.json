@@ -3,7 +3,8 @@
   "title": "Morning Coffee",
   "author": "Teletype Games",
   "desc": "A short point-and-click adventure built on the inkwell framework",
-  "site": "https://git.teletypegames.org/games/inkwell-demo",
+  "site": "https://git.teletypegames.org/demos/inkwell-demo",
+  "repo": "https://git.teletypegames.org/demos/inkwell-demo",
   "license": "MIT License",
   "version": "1.0.1"
 }
