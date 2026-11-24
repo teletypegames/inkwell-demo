@@ -97,7 +97,7 @@ if you are learning the engine:
 
 The `assets/` tree is compiled into the binary via `go:embed` and
 handed to the framework through `inkwell.AssetFS`, so the js/wasm build
-(`make wasm`) ships with working art. Native builds read from the same
+(`make web`) ships with working art. Native builds read from the same
 embedded copy — changing a PNG requires a rebuild. Files listed in
 `lib/assets.go` but missing from `assets/` still fall back to the
 framework's colored placeholders.

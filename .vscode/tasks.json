@@ -22,7 +22,7 @@
         {
             "label": "Build WASM",
             "type": "shell",
-            "command": "make wasm",
+            "command": "make web",
             "problemMatcher": []
         },
         {
